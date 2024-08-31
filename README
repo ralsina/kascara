@@ -1,0 +1,84 @@
+**************************************************************************
+Readme for Kascara 0.0.1 - Part of KDE
+Author: Roberto Alsina <ralsina@unl.edu.ar>
+License: GPL (See file COPYING for details)
+**************************************************************************
+
+Dear KDE user.
+This is the 0.0.1 release of Kascara.
+It's not an "official" release.
+It's not a "beta" release.
+It's not an "alpha" release.
+It's a "try-it-to-see-what-it-does-oops-my-house-is-on-fire-now" release, so
+treat it accordingly ;-)
+
+What is it:
+-----------
+
+Kascara is a dumb terminal emulator.
+You may wonder "What a heck can I do with a dumb terminal emulator????"
+If you do... keep on reading.
+
+What a heck can I do with a dumb terminal emulator????
+------------------------------------------------------
+
+Don't let the name fool you, Kascara emulates a dumb terminal, but Kascara
+itself has smarts, it's just playing dumb!
+
+How can I install it?
+---------------------
+
+Type
+./configure;make;make install
+
+Then go to the kascara/ttyize directory, and edit Makefile.edit_me
+Now type make -f Makefile.edit_me
+Copy the ttyize binary to some place in your PATH.
+
+WARNING: You need TCL and Expect for ttyize to build.
+WARNING: I wrote ttyize. I have no clue of how it works, that should tell
+WARNING: you something ;-)
+WARNING: Hopefully, it should be obsolete soon.
+WARNING: If you really want to make me happy, turn ttyize into a standalone
+WARNING: function and send it to me.
+
+So, how can I use it?
+---------------------
+
+Choose a command that is oriented to interactive use. With a command line.
+Something like gdb, gnuplot, bc, ash, nslookup, one of those awful unix
+utilities, you know some others, I'm sure!
+
+Now, type this:
+
+kascara your_command_here your_command_arg1 .... your_command_argn
+
+You will See a window with two panes.
+The top pane is the output of your command.
+The bottom pane is the input to your command.
+You type in the bottom, it works in the top. Simple!
+
+You can drag the pane separator, and you will find a middle pane. That's your
+command history.
+If you click in a command, it will appear in your input prompt.
+
+If you double click in one of those commands, the output pane will scroll back
+to the moment in the session you entered it (neat, isn't it?)
+
+You can also recall the command history using the up/down arrow keys [not yet].
+
+What a hell does Kascara mean?
+------------------------------
+
+Well, Kascara is like a shell that wraps different commands. In spanish, shell
+can be translated as cáscara. Remove the accent, put the mandatory K, and
+you got Kascara. Also, I agree with Taj (the author of KoRn, KArm, and more)
+that programs today have too serious names. I mean, the Tate in "Ashton-Tate"
+was a parrot!, and we are in this for fun, so who gives a damn.
+
+Finally:
+--------
+
+Hope you enjoy this thingie.
+For any comments, bug reports, monetary gifts, original uses for Kascara, or
+[ugh, I was possessed by the spirit of RMS], my email is ralsina@unl.edu.ar.

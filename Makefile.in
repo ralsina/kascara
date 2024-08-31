@@ -1,0 +1,69 @@
+SHELL = /bin/sh
+
+top_srcdir = @top_srcdir@
+topdir = @topdir@
+prefix = @prefix@
+
+top_builddir = .
+
+# Change this line to whatever needed
+SUBDIRS =  kascara
+
+default: all
+
+# This directory's subdirectories are mostly independent; you can cd
+# into them and run `make' without going through this Makefile.
+# To change the values of `make' variables: instead of editing Makefiles,
+# (1) if the variable is set in `config.status', edit `config.status'
+#     (which will cause the Makefiles to be regenerated when you run `make');
+# (2) otherwise, pass the desired values on the `make' command line.
+
+@SET_MAKE@
+
+clean-recursive:
+	@for subdir in $(SUBDIRS); do \
+	  target=`echo $@ | sed s/-recursive//`; \
+	  echo "Making $$target in $$subdir"; \
+	  (cd $$subdir && $(MAKE) $$target) \
+	   || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac; \
+	done && test -z "$$fail"
+
+clean:  clean-recursive
+
+distclean: clean
+	-rm -f config.status config.log config.cache
+	-rm -f libtool stamp-h
+	find . -name Makefile -exec rm -f \{\} \;
+
+all: Makefile apps
+
+.PHONY: default apps 
+
+Makefile: Makefile.in
+	config.status
+
+apps:
+	@for subdir in $(SUBDIRS); do \
+          target=`echo $@ | sed s/-recursive//`; \
+          echo "Making app in $$subdir"; \
+          (cd $$subdir && $(MAKE) all) \
+           || case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac; \
+        done && test -z "$$fail"
+
+install:
+	$(mkinstalldirs) $(incdir)
+	@INSTALL_DATA@ config.h $(incdir)
+	@for subdir in $(SUBDIRS); do \
+	echo "Making install in $$subdir"; \
+	(cd $$subdir && $(MAKE) install) \
+	|| case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac; \
+	done && test -z "$$fail"
+		@echo ""
+
+uninstall:
+	@for subdir in $(SUBDIRS); do \
+	echo "Making clean in $$subdir"; \
+	(cd $$subdir && $(MAKE) uninstall) \
+	|| case "$(MFLAGS)" in *k*) fail=yes;; *) exit 1;; esac; \
+	done && test -z "$$fail"
+		@echo ""

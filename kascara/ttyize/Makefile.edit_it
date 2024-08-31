@@ -1,0 +1,9 @@
+# Please edit this file to make it match your machine,
+# and then copy the resulting program somewhere in your path
+
+
+CC=cc
+TCL_INCLUDE=/usr/include/tcl
+
+all:
+	$(CC) -o ttyize ttyize.cpp -I$(TCL_INCLUDE) -lexpect -ltcl -lm
